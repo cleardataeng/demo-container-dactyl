@@ -3,8 +3,9 @@ package main
 import "os"
 import "net/http"
 import "encoding/json"
+import "log"
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func slashHandler(w http.ResponseWriter, r *http.Request) {
 	type DactylInfo struct {
 		Hostname   string
 		RemoteAddr string
@@ -30,7 +31,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	w.Write(js)
 }
 
+func logHandler(handler http.Handler) http.Handler {
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        log.Printf("%s %s %s", r.RemoteAddr, r.Method, r.URL)
+	handler.ServeHTTP(w, r)
+    })
+}
+
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/", slashHandler)
+	http.ListenAndServe(":8080", logHandler(http.DefaultServeMux))
 }
