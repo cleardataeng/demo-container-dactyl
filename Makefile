@@ -7,4 +7,4 @@ clean:
 	rm -rf *~ dactyl
 
 docker: dactyl
-	docker build -t rvandegrift/dactyl:latest .
+	docker build -t cleardata/dactyl:latest .
