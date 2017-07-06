@@ -2,8 +2,8 @@ dactyl
 ======
 
 ``dactyl`` is a small and simple demo web service.  It exists only so
-that `ida <https://bitbucket.org/rvandegrift/ida>`_ can provide a
-simple example of composing services.
+that `ida <https://github.com/cleardataeng/demo-container-ida>`_ can
+provide a simple example of composing services.
 
 ``dactyl`` supports a single endpoint at ``/``, and only handles ``GET``
 requests.
